@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import prisma from "@/lib/prisma"
+import { verifyPassword } from "@/lib/password"
 
 const handler = NextAuth({
   providers: [
@@ -11,18 +12,43 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        if (!credentials?.email) return null
+        if (!credentials?.email || !credentials?.password) return null
         
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
+        const admin = await prisma.adminUser.findUnique({
+          where: { email: credentials.email, active: true }
         })
         
-        return user ? { id: user.id, email: user.email, name: user.name } : null
+        if (!admin) return null
+        
+        const valid = await verifyPassword(credentials.password, admin.password)
+        if (!valid) return null
+        
+        return {
+          id: admin.id,
+          email: admin.email,
+          name: admin.name,
+          role: admin.role,
+        }
       }
     })
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role
+      }
+      return token
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub!
+        session.user.role = token.role as string
+      }
+      return session
+    }
+  },
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/admin/login",
   },
   session: {
     strategy: "jwt"
