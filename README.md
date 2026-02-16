@@ -1,102 +1,103 @@
-# Site Bang - Bangkok Portal for Japanese Residents
+# Site Bang - 在タイ日本人向けバンコクポータル
 
-A fully custom portal site for Japanese residents in Bangkok, built with Next.js, focusing on lifestyle information, store discovery, and community interaction.
+バンコク在住の日本人向けに、ライフスタイル情報・店舗発見・コミュニティ交流に特化した、Next.js 製の完全カスタムポータルサイトです。
 
-## 🎯 Project Status
+## 🎯 プロジェクト状況
 
-### ✅ Completed (Backend)
-- Complete database schema with Prisma
-- RESTful API endpoints (v1)
-- Authentication & authorization (NextAuth.js)
-- Role-based access control
-- Multilingual support (ja/en/th)
-- Input validation (Zod)
-- Error handling
-- Admin APIs for content management
+### ✅ 完了済み（バックエンド）
+- Prisma によるデータベーススキーマ一式
+- RESTful API エンドポイント（v1）
+- 認証・認可（NextAuth.js）
+- ロールベースアクセス制御
+- 多言語対応（日本語 / 英語 / タイ語）
+- 入力バリデーション（Zod）
+- エラーハンドリング
+- コンテンツ管理用管理系 API
 
-### ❌ Not Implemented
-- Stripe payment integration
-- Image upload (R2/S3)
-- Email notifications
-- Meilisearch integration
-- Frontend UI (admin panel & public site)
-- Caching (Redis)
-- Rate limiting
+### ❌ 未実装
+- Stripe 決済連携
+- 画像アップロード（R2/S3）
+- メール通知
+- Meilisearch 連携
+- フロントエンド UI（管理画面・公開サイト）
+- キャッシュ（Redis）
+- レート制限
 
-## 🚀 Quick Start
+## 🚀 クイックスタート
 
 ```bash
-# Install dependencies
+# 依存関係のインストール
 npm install
 
-# Setup environment
+# 環境変数の設定
 cp .env.example .env
-# Edit .env with your credentials
+# .env を編集して認証情報などを設定
 
-# Setup database
+# データベースのセットアップ
 npx prisma migrate dev --name init
 npx prisma generate
 
-# Create admin user
+# 管理者ユーザーの作成
 npx tsx scripts/create-admin.ts
 
-# Start development server
+# 開発サーバーの起動
 npm run dev
 ```
 
-Visit http://localhost:3000
+ブラウザで http://localhost:3000 にアクセスしてください。
 
-## 📚 Documentation
+## 📚 ドキュメント
 
-All guides are in the `/guides` folder:
+各種ガイドは `/guides` フォルダにあります。
 
-- **[guides/QUICKSTART.md](./guides/QUICKSTART.md)** - Get started in 5 minutes
-- **[guides/BACKEND_SETUP.md](./guides/BACKEND_SETUP.md)** - Detailed backend guide
-- **[guides/API_DOCS.md](./guides/API_DOCS.md)** - Complete API reference
-- **[guides/SUCCESS.md](./guides/SUCCESS.md)** - What's been completed
-- **[guides/FILE_STRUCTURE.md](./guides/FILE_STRUCTURE.md)** - Project structure
+- **[guides/QUICKSTART.md](./guides/QUICKSTART.md)** - 5分で始める
+- **[guides/BACKEND_SETUP.md](./guides/BACKEND_SETUP.md)** - バックエンド詳細ガイド
+- **[guides/API_DOCS.md](./guides/API_DOCS.md)** - API リファレンス
+- **[guides/SUCCESS.md](./guides/SUCCESS.md)** - 完了済み項目一覧
+- **[guides/FILE_STRUCTURE.md](./guides/FILE_STRUCTURE.md)** - プロジェクト構成
 
-## 🏗️ Tech Stack
+## 🏗️ 技術スタック
 
-- **Framework**: Next.js 16 (App Router)
-- **Database**: PostgreSQL with Prisma ORM
-- **Authentication**: NextAuth.js
-- **Validation**: Zod
-- **Styling**: Tailwind CSS v4
-- **UI Components**: Radix UI, shadcn
-- **Forms**: React Hook Form
-- **Rich Text**: Tiptap
+- **フレームワーク**: Next.js 16（App Router）
+- **データベース**: PostgreSQL（Prisma ORM）
+- **認証**: NextAuth.js
+- **バリデーション**: Zod
+- **スタイリング**: Tailwind CSS v4
+- **UI コンポーネント**: Radix UI、shadcn
+- **フォーム**: React Hook Form
+- **リッチテキスト**: Tiptap
 
-## 📁 Project Structure
+## 📁 プロジェクト構成
 
 ```
-app/api/v1/          # API routes
-lib/                 # Utilities & validations
-prisma/              # Database schema
-scripts/             # Setup scripts
-guides/              # Documentation
+app/api/v1/          # API ルート
+lib/                 # ユーティリティ・バリデーション
+prisma/              # データベーススキーマ
+scripts/             # セットアップ用スクリプト
+guides/              # ドキュメント
 ```
 
-## 🔐 Authentication
+## 🔐 認証
 
-Role-based access:
-- **SUPER_ADMIN**: Full system access
-- **ADMIN**: Content management + moderation
-- **EDITOR**: Content creation only
+ロールベースのアクセス制御です。
 
-## 🌐 Multilingual Support
+- **SUPER_ADMIN**: システム全体の管理
+- **ADMIN**: コンテンツ管理・モデレーション
+- **EDITOR**: コンテンツ作成のみ
 
-All content supports: Japanese (ja), English (en), Thai (th)
+## 🌐 多言語対応
 
-## 🎉 Backend Complete
+コンテンツは日本語（ja）・英語（en）・タイ語（th）に対応しています。
 
-✅ 17 database tables
-✅ 17 API endpoints
-✅ Full authentication
-✅ Complete documentation
+## 🎉 バックエンド完了
 
-Ready for frontend development!
+✅ データベーステーブル 17 個  
+✅ API エンドポイント 17 個  
+✅ 認証機能一式  
+✅ ドキュメント完備  
 
-## 📄 License
+フロントエンド開発に進める状態です。
 
-Private project for freelance client.
+## 📄 ライセンス
+
+フリーランスクライアント向けの非公開プロジェクトです。
